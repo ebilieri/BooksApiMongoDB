@@ -36,6 +36,12 @@ namespace BooksApiMongoDB.Services
             return book;
         }
 
+        public Book CreateMany(List<Book> books)
+        {
+            _books.InsertMany(books);
+            return books[0];
+        }
+
         public void Update(string id, Book bookIn) =>
             _books.ReplaceOne(book => book.Id == id, bookIn);
 

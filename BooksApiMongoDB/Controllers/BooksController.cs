@@ -43,7 +43,21 @@ namespace BooksApiMongoDB.Controllers
         [HttpPost]
         public ActionResult<Book> Create(Book book)
         {
-            _bookService.Create(book);
+            //_bookService.Create(book);
+
+            List<Book> books = new List<Book>();
+
+            books.Add(book);
+            var b1 = new Book
+            {
+                Author = "Jose",
+                Category = "C",
+                Price = 100,
+                BookName = "Arquivos X"
+            };
+            books.Add(b1);
+
+            _bookService.CreateMany(books);
 
             return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
         }
